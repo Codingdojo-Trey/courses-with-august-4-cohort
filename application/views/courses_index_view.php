@@ -4,12 +4,13 @@
 	<link rel="stylesheet" type="text/css" href="/assets/style.css">
 </head>
 <body>
-	<h1>Here are the awesome courses!</h1>
+	<h1>Here are the awesome courses, <?php echo $this->session->userdata('name'); ?></h1>
 	<table>
 		<thead>
 			<th>Name</th>
 			<th>Description</th>
 			<th>Date</th>
+			<th>Instructor</th>
 			<th>Remove</th>
 			<th>Edit</th>
 		</thead>
@@ -21,6 +22,7 @@
 							<td>{$course['name']}</td>
 							<td>{$course['description']}</td>
 							<td>{$course['created_at']}</td>
+							<td>{$course['instructor']}</td>
 							<td><a href='/courses/confirm/{$course['id']}'>delete</a></td>
 							<td><a href='/courses/edit/{$course['id']}'>edit</a></td>
 						</tr>";

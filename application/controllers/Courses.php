@@ -23,7 +23,7 @@ class Courses extends CI_Controller {
 		if($this->form_validation->run())
 		{
 			//this is the model part
-			$this->Course->create_course($this->input->post());
+			$this->Course->create_course($this->input->post(), $this->session->userdata('user_id'));
 			$this->session->set_flashdata('success', "Congrats, you added a course!");
 			redirect(base_url('/courses/index'));
 		}

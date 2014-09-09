@@ -3,15 +3,17 @@
 	{
 		public function get_all_courses()
 		{
-			$query = "SELECT * FROM courses";
+			$query = "SELECT  courses.*, CONCAT(users.first_name,' ',users.last_name) AS instructor
+					  FROM courses
+					  LEFT JOIN users ON users.id = courses.user_id";
 			//result array works like fetch_all and gives an array full of arrays!
 			return $this->db->query($query)->result_array();
 		}
 
-		public function create_course($data)
+		public function create_course($data, $id)
 		{
-			$query = "INSERT INTO courses (name, description, created_at, updated_at)
-					  VALUES (?, ?, NOW(), NOW())";
+			$query = "INSERT INTO courses (name, description, created_at, updated_at, user_id)
+					  VALUES (?, ?, NOW(), NOW(), {$id})";
 			$this->db->query($query, $data);
 		}
 
